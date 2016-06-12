@@ -4,9 +4,9 @@
 // = Component Registery =
 // =======================
 
-$kirby->set('blueprint', 'calendar', __DIR__ . '/blueprints/calendar.php');
-$kirby->set('blueprint', 'calendars', __DIR__ . '/blueprints/calendars.php');
-$kirby->set('template', 'calendars', __DIR__ . '/templates/calendars.php');
+$kirby->set('blueprint', 'event', __DIR__ . '/blueprints/event.php');
+$kirby->set('blueprint', 'ics', __DIR__ . '/blueprints/ics.php');
+$kirby->set('template', 'ics', __DIR__ . '/templates/ics.php');
 $kirby->set('snippet', 'calendar-div', __DIR__ . '/snippets/calendar-div.php');
 $kirby->set('snippet', 'calendar-ical-head', __DIR__ . '/snippets/calendar-ical-head.php');
 $kirby->set('snippet', 'calendar-ical-event', __DIR__ . '/snippets/calendar-ical-event.php');

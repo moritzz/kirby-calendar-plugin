@@ -1,6 +1,6 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: Calendar
+title: Event
 pages: false
 fields:
 	title:
