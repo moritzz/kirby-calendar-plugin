@@ -1,6 +1,6 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: iCalendar Stream
+title: Calendar Link
 pages: false
 files: false
 icon: calendar
@@ -11,6 +11,14 @@ fields:
   date:
     label Date
     type: date
+    help: Used to allow mixing in a Calendar Link into a Blog stream.
+  calendar_headline:
+    label: Calendar Settings
+    type: headline
+  calendar_color:
+    label: Color
+    type: color
+    default: 1BADF8
   info:
     label: Info
     type: info
