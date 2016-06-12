@@ -22,4 +22,3 @@
 <?php endif ?>
 <?php endforeach; ?>
 <?= "END:VCALENDAR\n\r" ?>
-<?php die(); ?>
