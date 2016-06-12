@@ -31,10 +31,10 @@
 <?php $calendar = calendar($sibling->calendar()->yaml()); ?>
 <?php foreach ($calendar->getAllEvents() as $event): ?>
 <?= "BEGIN:VEVENT\n\r" ?>
-<?= "DTSTART:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp()) . "\n\r" ?>
-<?= "DTEND:" . gmdate('Ymd\THis\Z', $event->getEndTimestamp()) . "\n\r" ?>
+<?= "DTSTART;TZID=Europe/Zurich:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp()) . "\n\r" ?>
+<?= "DTEND;TZID=Europe/Zurich:" . gmdate('Ymd\THis\Z', $event->getEndTimestamp()) . "\n\r" ?>
 <?= "UID:" . $sibling->hash() . '-' . base_convert(sprintf('%u', crc32($event->getBeginTimestamp())), 10, 36) . "\n\r" ?>
-<?= "DTSTAMP:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp()) . "\n\r" ?>
+<?= "DTSTAMP;TZID=Europe/Zurich:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp()) . "\n\r" ?>
 <?= "LOCATION:" . $event->getField('location') . "\n\r" ?>
 <?= "DESCRIPTION:" . $event->getField('description') . "\n\r" ?>
 <?= "SUMMARY:" . $event->getField('summary') . "\n\r"?>
