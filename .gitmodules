@@ -1,0 +1,4 @@
+[submodule "color"]
+	path = fields/color
+	url = git@github.com:moritzz/Kirby-Color-Picker.git
+	branch = develop
