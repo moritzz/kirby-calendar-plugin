@@ -4,7 +4,9 @@
 <?= "VERSION:2.0\n\r" ?>
 <?= "PRODID:-//" . $site->url() . "//Kirby Calendar Plugin//" . str::upper($site->language()->code()) . "\n\r" ?>
 <?= "CALSCALE:GREGORIAN\n\r" ?>
+<?php if ($page->calendar_color()->isNotEmpty()): ?>
 <?= "X-APPLE-CALENDAR-COLOR:#{$page->calendar_color->or('1BADF8')}\n\r" ?>
+<?php endif ?>
 <?= "X-WR-TIMEZONE:Europe/Zurich\n\r" ?>
 <?= "BEGIN:VTIMEZONE\n\r" ?>
 <?= "TZID:Europe/Zurich\n\r" ?>
