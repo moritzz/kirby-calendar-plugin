@@ -15,6 +15,15 @@ fields:
   calendar_headline:
     label: Calendar Settings
     type: headline
+  calendar_timezone:
+    label: Calendar Timezone
+    type: select
+    options:
+      "-2": "-2"
+      "-1": "-1"
+      "0": "UTC"
+      "1": "1"
+      "2": "2"
   calendar_color:
     label: Color
     type: color

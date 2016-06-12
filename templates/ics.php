@@ -5,36 +5,22 @@
 <?= "PRODID:-//" . $site->url() . "//Kirby Calendar Plugin//" . str::upper($site->language()->code()) . "\n\r" ?>
 <?= "CALSCALE:GREGORIAN\n\r" ?>
 <?php if ($page->calendar_color()->isNotEmpty()): ?>
-<?= "X-APPLE-CALENDAR-COLOR:#{$page->calendar_color->or('1BADF8')}\n\r" ?>
+<?= "X-APPLE-CALENDAR-COLOR:#{$page->calendar_color()->or('1BADF8')}\n\r" ?>
 <?php endif ?>
-<?= "X-WR-TIMEZONE:Europe/Zurich\n\r" ?>
-<?= "BEGIN:VTIMEZONE\n\r" ?>
-<?= "TZID:Europe/Zurich\n\r" ?>
-<?= "BEGIN:DAYLIGHT\n\r" ?>
-<?= "TZOFFSETFROM:+0100\n\r" ?>
-<?= "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\n\r" ?>
-<?= "DTSTART:19810329T020000\n\r" ?>
-<?= "TZNAME:MESZ\n\r" ?>
-<?= "TZOFFSETTO:+0200\n\r" ?>
-<?= "END:DAYLIGHT\n\r" ?>
-<?= "BEGIN:STANDARD\n\r" ?>
-<?= "TZOFFSETFROM:+0200\n\r" ?>
-<?= "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\n\r" ?>
-<?= "DTSTART:19961027T030000\n\r" ?>
-<?= "TZNAME:MEZ\n\r" ?>
-<?= "TZOFFSETTO:+0100\n\r" ?>
-<?= "END:STANDARD\n\r" ?>
-<?= "END:VTIMEZONE\n\r" ?>
-<?= "METHOD:PUBLISH\n\r" ?>
+<?php if ($page->calendar_timezone()->isNotEmpty()): ?>
+<?php $timezone_offset = 3600 * (floatval($page->calendar_timezone()->value) + date("I")) ?>
+<?php else: ?>
+<?php $timezone_offset = 0 ?>
+<?php endif; ?>
 <?php foreach ($page->siblings($self = false) as $key => $sibling): ?>
 <?php if ($sibling->calendar()->isNotEmpty()): ?>
 <?php $calendar = calendar($sibling->calendar()->yaml()); ?>
 <?php foreach ($calendar->getAllEvents() as $event): ?>
 <?= "BEGIN:VEVENT\n\r" ?>
-<?= "DTSTART;TZID=Europe/Zurich:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp()) . "\n\r" ?>
-<?= "DTEND;TZID=Europe/Zurich:" . gmdate('Ymd\THis\Z', $event->getEndTimestamp()) . "\n\r" ?>
+<?= "DTSTART:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp() + $timezone_offset) . "\n\r" ?>
+<?= "DTEND:" . gmdate('Ymd\THis\Z', $event->getEndTimestamp() + $timezone_offset) . "\n\r" ?>
 <?= "UID:" . $sibling->hash() . '-' . base_convert(sprintf('%u', crc32($event->getBeginTimestamp())), 10, 36) . "\n\r" ?>
-<?= "DTSTAMP;TZID=Europe/Zurich:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp()) . "\n\r" ?>
+<?= "DTSTAMP:" . gmdate('Ymd\THis\Z', $event->getBeginTimestamp() + $timezone_offset) . "\n\r" ?>
 <?= "LOCATION:" . $event->getField('location') . "\n\r" ?>
 <?= "DESCRIPTION:" . $event->getField('description') . "\n\r" ?>
 <?= "SUMMARY:" . $event->getField('summary') . "\n\r"?>
