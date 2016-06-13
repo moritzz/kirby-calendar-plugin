@@ -12,6 +12,10 @@ fields:
     label Date
     type: date
     help: Used to allow mixing in a Calendar Link into a Blog stream.
+  text:
+    label: Text
+    type:  textarea
+    help: Used mainly for Calendar to show up in blog post overview pages.
   calendar_headline:
     label: Calendar Settings
     type: headline
