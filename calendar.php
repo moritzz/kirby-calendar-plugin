@@ -12,6 +12,13 @@ $kirby->set('snippet', 'calendar-div', __DIR__ . '/snippets/calendar-div.php');
 $kirby->set('snippet', 'calendar-table', __DIR__ . '/snippets/calendar-table.php');
 $kirby->set('snippet', 'calendar-teaser', __DIR__ . '/snippets/calendar-teaser.php');
 
+// ===================
+// = Model Registery =
+// ===================
+
+require_once(__DIR__ . '/models/IcsPage.php');
+$kirby->set('page::model', 'ics', 'IcsPage');
+
 // ======================
 // = Calendar Initation =
 // ======================
